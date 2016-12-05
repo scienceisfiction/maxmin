@@ -1,0 +1,50 @@
+---
+output:
+  md_document:
+    variant: markdown_github
+---
+
+```{r, echo = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "README-"
+)
+```
+
+** This is a practice package, not really meant to be all that useful.
+
+### MaxMin
+
+There are just 2 functions, one slightly more advanced than the other. Both find the difference between quantiles, one can only take the difference between max() and min() while the other can find the difference between any quantile of your choosing.
+
+### Installation
+
+```{r installation, eval = FALSE}
+devtools::install_github("scienceisfiction/maxmin")
+```
+
+### Demos
+
+Finding the difference between max and min:
+```{r}
+library(gapminder)
+library(maxmin)
+max_min_min(gapminder$lifeExp)
+max_min_min(iris$Sepal.Length)
+```
+
+To find the difference between any quantile of your chooseing:
+```{r}
+qdiff(gapminder$lifeExp)
+qdiff(gapminder$lifeExp, c(0, 1))
+qdiff(gapminder$lifeExp, c(0.25, 0.75))
+```
+
+To specify one of 9 different algorithms that generate the quantiles, which will give you slightly different answers:
+```{r}
+set.seed(1234)
+z <- rnorm(10)
+qdiff(z, probs = c(0.25, 0.75), type = 1)
+qdiff(z, probs = c(0.25, 0.75), type = 4)
+```
