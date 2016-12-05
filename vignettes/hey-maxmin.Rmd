@@ -35,11 +35,3 @@ z <- rnorm(10)
 qdiff(z, probs = c(0.25, 0.75), type = 1)
 qdiff(z, probs = c(0.25, 0.75), type = 4)
 ```
-
-Using the NA argument:
-```{r}
-z <- gapminder$lifeExp
-z[3] <- NA
-qdiff(z, na.rm = FALSE)
-```
-
